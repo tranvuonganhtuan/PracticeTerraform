@@ -1,5 +1,5 @@
 variable "vpc_name" {
-  default = "tuantran-tf-vpc"
+  default = "tuantran-vpc"
 }
 
 variable "cidrvpc" {
@@ -8,7 +8,7 @@ variable "cidrvpc" {
 
 variable "tags" {
   default = {
-    Name = "tuantran-vpc"
+    Name = "tuantran-vpc-test2"
     Owner = "tuantran"
   }
 }
