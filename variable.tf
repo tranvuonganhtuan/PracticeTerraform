@@ -1,5 +1,5 @@
 variable "vpc_name" {
-  default = "tuantranvpc"
+  default = "tuantran-vpc"
 }
 
 variable "cidrvpc" {
@@ -8,9 +8,30 @@ variable "cidrvpc" {
 
 variable "tags" {
   default = {
-    Name  = "tuantran-vpc"
+    Name = "tuantran-vpc-test2"
     Owner = "tuantran"
   }
+}
+
+# variable "az_counts" {
+#   default = 3
+# }
+
+variable "vm-config" {
+  default = {
+    vm1 = {
+      instance_type = "t3.small",
+      tags = {
+        "ext-name" = "vm2"
+        "funct"    = "purpose test"
+      }
+    },
+    vm2 = {
+      instance_type = "t3.medium",
+      tags          = {}
+    }
+  }
+
 }
 
 variable "bastion_definition" {
@@ -34,7 +55,7 @@ variable "bastion_definition" {
       bastion_monitoring          = true
       bastion_name                = "bastion"
       bastion_public_key          = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyqbDZMKTXSTCM9Sf6k2Oxg/yU+xPESrtdMManPkQjp tranvuonganhtuan@gmail.com"
-      trusted_ips                 = ["115.78.133.246/32"]
+      trusted_ips                 = ["42.112.79.203/32"]
       user_data_base64            = null
       ext-tags = {
         "fucnt" = "demo-tf"

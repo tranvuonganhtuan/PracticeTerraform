@@ -1,11 +1,9 @@
 variable "azs" {
 
 }
-
 variable "vpc_name" {
 
 }
-
 variable "tags" {
 
 }

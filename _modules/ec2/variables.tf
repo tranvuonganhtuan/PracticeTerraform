@@ -31,6 +31,3 @@ variable "bastion_monitoring" {
 variable "vpc_id" {
 
 }
-variable "vpc_name" {
-  
-}

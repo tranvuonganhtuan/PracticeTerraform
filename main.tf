@@ -1,12 +1,11 @@
 locals {
-  #calculate the az person region of aws cloud provider
-  az_counts = length(data.aws_availability_zones.available.names)
+  azs = length(data.aws_availability_zones.available.names)
 }
 
 #CALLING MODULE NETWORK TO CREATE THE VPC
 module "vpc" {
   source   = "./_modules/network"
-  azs      = local.az_counts
+  azs      = local.azs
   cidrvpc  = var.cidrvpc
   azname   = data.aws_availability_zones.available.names
   vpc_name = var.vpc_name
@@ -21,7 +20,7 @@ module "ec2" {
   ]
   source                      = "./_modules/ec2"
   for_each                    = var.bastion_definition
-  vpc_id                      = module.vpc.vpcid
+  vpc_id                      = module.vpc.vpc_id
   bastion_instance_class      = each.value.bastion_instance_class
   bastion_name                = each.value.bastion_name
   bastion_public_key          = each.value.bastion_public_key
@@ -35,5 +34,5 @@ module "ec2" {
     var.tags,
     each.value.ext-tags
   )
-
 }
+
