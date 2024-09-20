@@ -25,23 +25,23 @@ jobs:
           terraform_version: 1.9.5
           terraform_wrapper: false
 
-          - name: "Create namespace"
-          run: "terraform workspace new dev"
-          continue-on-error: true
-          
-        - name: "Select namespace"
-          run: "terraform workspace select dev"
-          continue-on-error: true
-  
-        - name: "Init tf"
-          run: |
-            terraform init -backend-config=dev.conf
-  
-        - name: "Verify the tfvars "
-          run: "terraform plan -var-file=./envs/dev.tfvars"
-  
-        - name: "apply the tfvars "
-          run: "terraform apply  -var-file=./envs/dev.tfvars --auto-approve"
-  
-        - name: "Destroy the resources"
-          run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"
+      - name: "Create namespace"
+        run: "terraform workspace new dev"
+        continue-on-error: true
+        
+      - name: "Select namespace"
+        run: "terraform workspace select dev"
+        continue-on-error: true
+
+      - name: "Init tf"
+        run: |
+          terraform init -backend-config=dev.conf
+
+      - name: "Verify the tfvars "
+        run: "terraform plan -var-file=./envs/dev.tfvars"
+
+      - name: "apply the tfvars "
+        run: "terraform apply  -var-file=./envs/dev.tfvars --auto-approve"
+
+      - name: "Destroy the resources"
+        run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"
