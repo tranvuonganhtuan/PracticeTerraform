@@ -1,7 +1,10 @@
 locals {
   azs = length(data.aws_availability_zones.available.names)
 }
-
+resource "random_integer" "subnet" {
+  min = 0
+  max = 2
+} 
 #CALLING MODULE NETWORK TO CREATE THE VPC
 module "vpc" {
   source   = "./_modules/network"
@@ -9,7 +12,11 @@ module "vpc" {
   cidrvpc  = var.cidrvpc
   azname   = data.aws_availability_zones.available.names
   vpc_name = var.vpc_name
-  tags     = var.tags
+  tags = merge(var.tags,
+    {
+      "ext-env" : terraform.workspace
+    }
+  )
 }
 
 #CALLING MODULE EC2 TO CREATE THE EC2 INSTANCE 
@@ -32,7 +39,10 @@ module "ec2" {
   bastion_monitoring          = each.value.bastion_monitoring
   default_tags = merge(
     var.tags,
-    each.value.ext-tags
+    each.value.ext-tags,
+    {
+      "ext-env" : terraform.workspace
+    }
   )
 }
 
