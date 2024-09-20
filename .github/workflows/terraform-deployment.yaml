@@ -9,7 +9,6 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  # AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 jobs: 
   terraform: 
     name: "Terraform provision"
@@ -26,23 +25,23 @@ jobs:
           terraform_version: 1.9.5
           terraform_wrapper: false
 
-      - name: "Create namespace"
-        run: "terraform workspace new dev"
-        continue-on-error: true
-        
-      - name: "Select namespace"
-        run: "terraform workspace select dev"
-        continue-on-error: true
-
+          - name: "Create namespace"
+          run: "terraform workspace new dev"
+          continue-on-error: true
+          
+        - name: "Select namespace"
+          run: "terraform workspace select dev"
+          continue-on-error: true
+  
         - name: "Init tf"
-        run: |
-          terraform init -backend-config=dev.conf
-
-      - name: "Verify the tfvars "
-        run: "terraform plan -var-file=./envs/dev.tfvars"
-
-      - name: "apply the tfvars "
-        run: "terraform apply  -var-file=./envs/dev.tfvars --auto-approve"
-
-      - name: "Destroy the resources"
-        run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"
+          run: |
+            terraform init -backend-config=dev.conf
+  
+        - name: "Verify the tfvars "
+          run: "terraform plan -var-file=./envs/dev.tfvars"
+  
+        - name: "apply the tfvars "
+          run: "terraform apply  -var-file=./envs/dev.tfvars --auto-approve"
+  
+        - name: "Destroy the resources"
+          run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"
