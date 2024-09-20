@@ -13,7 +13,7 @@ vm-config = {
   }
 }
 
-variable "bastion_definition" {
+bastion_definition {
     "bastion" = {
       associate_public_ip_address = false
       bastion_ami                 = "ami-0023481579962abd4"
