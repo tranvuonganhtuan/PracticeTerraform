@@ -34,7 +34,7 @@ jobs:
         run: "terraform workspace select dev"
         continue-on-error: true
 
-      - name: "Init tf"
+        - name: "Init tf"
         run: |
           terraform init -backend-config=dev.conf
 
