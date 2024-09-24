@@ -2,10 +2,10 @@ name: "Terraform deployment"
 on: 
   push:
     branches:
-      - main
+      - tf/destroy
   pull_request:
     branches:
-      - main
+      - tf/destroy
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -37,11 +37,5 @@ jobs:
         run: |
           terraform init -backend-config=dev.conf
 
-      - name: "Verify the tfvars "
-        run: "terraform plan -var-file=./envs/dev.tfvars"
-
-      - name: "apply the tfvars "
-        run: "terraform apply  -var-file=./envs/dev.tfvars --auto-approve"
-
-      # - name: "Destroy the resources"
-      #   run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"
+      - name: "Destroy the resources"
+        run: "terraform destroy -var-file=./envs/dev.tfvars --auto-approve"

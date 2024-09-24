@@ -19,6 +19,28 @@ module "vpc" {
   )
 }
 
+#CREATE THE EKS CLUSTER
+module "eks" {
+  depends_on                 = [module.vpc]
+  source                     = "./_modules/eks"
+  eks_cluster_name           = "tuantraneks"
+  eks_cluser_enginee_version = "1.30"
+  vpc_id                     = module.vpc.vpc_id
+  private_subnet_ids         = module.vpc.private_subnet_id
+  instance_types             = ["t2.large", "t3.large", "t2.medium", "t3.medium"]
+  ami_id                     = "ami-079c7318049545065"
+  tags                       = var.tags
+}
+
+#SETUP AUTOSCALLER for EKS
+module "k8sscaler" {
+  depends_on              = [module.vpc, module.eks]
+  source                  = "./_modules/autoscaler"
+  cluster_id              = module.eks.cluster_id
+  eks_cluster_name        = module.eks.cluster_name
+  cluster_oidc_issuer_url = module.eks.cluster_oidc_issuer_url
+}
+
 #CALLING MODULE EC2 TO CREATE THE EC2 INSTANCE 
 
 module "ec2" {
