@@ -7,15 +7,6 @@ locals {
   identify = random_integer.this.result
 }
 
-resource "random_integer" "this" {
-  min = 10000000
-  max = 99999999
-}
-locals {
-  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
-  identify = random_integer.this.result
-}
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.13.0"
