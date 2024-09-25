@@ -1,14 +1,45 @@
-vpc_name = "dev_env"
-cidrvpc  = "10.0.0.0/16"
+env_prefix                             = "dev"
+vpc_name                               = "dev_env"
+cidrvpc                                = "10.0.0.0/16"
+enable_nat_gateway                     = true
+single_nat_gateway                     = true
+enable_dns_hostnames                   = true
+create_database_subnet_group           = true
+create_database_subnet_route_table     = true
+create_database_internet_gateway_route = true
+enable_flow_log                        = true
+create_flow_log_cloudwatch_iam_role    = true
+create_flow_log_cloudwatch_log_group   = true
+eks_config = {
+  cluster_name                                   = "tuantraneks"
+  cluster_version                                = "1.30"
+  min_size                                       = 3
+  max_size                                       = 9
+  eks_managed_node_group_defaults_instance_types = ["t2.large", "t2.medium", "t2.xlarge"]
+  instance_type                                  = "t2.medium"
+  instance_types                                 = ["t2.large", "t2.medium", "t2.xlarge"]
+  manage_aws_auth_configmap                      = true
+  endpoint_public_access                         = true
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::629526135429:user/joe-dev"
+      username = "joe-dev"
+      groups   = ["system:masters"]
+    },
+  ]
+  cluster_endpoint_public_access_cidrs = ["0.0.0.0/0"],
+  eks_cw_logging                       = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+}
 vm-config = {
   vm1 = {
-    instance_type = "t2.medium",
+    instance_type = "t2.small",
     tags = {
       "ext-name" = "vm2"
+      "funct"    = "purpose test"
     }
   },
   vm2 = {
-    instance_type = "t2.large",
+    instance_type = "t2.medium",
     tags          = {}
   }
 }
