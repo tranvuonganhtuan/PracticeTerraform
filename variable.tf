@@ -1,5 +1,5 @@
 variable "vpc_name" {
-  default = "tuantran-vp-test3"
+  default = "tuantran-vpc-test3"
 }
 variable "env_prefix" {
 
