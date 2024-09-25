@@ -59,3 +59,4 @@ bastion_definition = {
       }
     }
 }
+cluster_endpoint_public_access = true
