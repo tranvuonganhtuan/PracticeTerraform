@@ -3,7 +3,7 @@ resource "random_integer" "this" {
   max = 99999999
 }
 locals {
-  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
+  azs = slice(data.aws_availability_zones.available.names, 0, min(length(data.aws_availability_zones.available.names), 3))
   identify = random_integer.this.result
 }
 
