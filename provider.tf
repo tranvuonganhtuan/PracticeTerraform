@@ -8,7 +8,11 @@ terraform {
   }
 }
 
+# provider "aws" {
+#   //profile = "default"
+#   region = "ap-northeast-2"
+# }
+
 provider "aws" {
-  //profile = "default"
-  region = "ap-northeast-2"
+  region = "us-west-2"
 }
