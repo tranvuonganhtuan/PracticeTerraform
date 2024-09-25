@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "us-west-1"
   # profile = "vti"
 }
 provider "random" {}
