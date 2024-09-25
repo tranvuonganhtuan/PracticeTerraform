@@ -27,7 +27,7 @@ module "eks" {
   eks_cluser_enginee_version = "1.30"
   vpc_id                     = module.vpc.vpc_id
   private_subnet_ids         = module.vpc.private_subnet_id
-  instance_types             = ["t3.large", "t3.large", "t3.medium", "t3.medium"]
+  instance_types             = ["t2.large", "t3.large", "t2.medium", "t3.medium"]
   ami_id                     = "ami-0023481579962abd4"
   tags                       = var.tags
 }
