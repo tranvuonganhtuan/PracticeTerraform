@@ -268,8 +268,8 @@ resource "kubernetes_config_map" "aws_auth_configmap" {
     - "system:nodes"
 YAML
     mapUsers = <<YAML
-- "userarn": "arn:aws:iam::084375555299:user/quyennv_user"
-  "username": "quyennv_user"
+- "userarn": "arn:aws:iam::084375555299:user/DE000040"
+  "username": "DE000040"
   "groups":
     - "system:masters"
 YAML
