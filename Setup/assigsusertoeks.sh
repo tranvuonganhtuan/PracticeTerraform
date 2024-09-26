@@ -2,7 +2,7 @@
 
 #references document: https://docs.aws.amazon.com/eks/latest/userguide/access-policies.html
 
-AWS_REGION=us-east-1
+AWS_REGION=ap-northeast-2
 AWS_PROFILE=vti
 EKS_CLUSTER_NAME=tuantraneks
 AWS_USER_ARN=arn:aws:iam::084375555299:user/DE000040
