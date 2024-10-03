@@ -15,9 +15,9 @@ eks_config = {
   cluster_version                                = "1.30"
   min_size                                       = 3
   max_size                                       = 9
-  eks_managed_node_group_defaults_instance_types = ["t2.2xlarge", "t2.large"]
-  instance_type                                  = "t2.2xlarge"
-  instance_types                                 = ["t2.2xlarge", "t2.large"]
+  eks_managed_node_group_defaults_instance_types = ["t3.2xlarge", "t3.large"]
+  instance_type                                  = "t3.2xlarge"
+  instance_types                                 = ["t3.2xlarge", "t3.large"]
   manage_aws_auth_configmap                      = true
   endpoint_public_access                         = true
   aws_auth_users = [
@@ -32,14 +32,14 @@ eks_config = {
 }
 vm-config = {
   vm1 = {
-    instance_type = "t2.small",
+    instance_type = "t3.small",
     tags = {
       "ext-name" = "vm2"
       "funct"    = "purpose test"
     }
   },
   vm2 = {
-    instance_type = "t2.medium",
+    instance_type = "t3.medium",
     tags          = {}
   }
 }
