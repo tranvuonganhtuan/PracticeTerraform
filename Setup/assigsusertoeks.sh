@@ -6,6 +6,7 @@ AWS_REGION=ap-northeast-2
 AWS_PROFILE=vti
 EKS_CLUSTER_NAME=tuantraneks
 AWS_USER_ARN=arn:aws:iam::084375555299:user/DE000040
+AWS_USERNAME=quyennv_user
 TYPE_ACCESS=cluster
 POLICY_ARN=arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy
 
