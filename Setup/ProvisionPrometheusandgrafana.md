@@ -16,6 +16,7 @@ helm install prometheus prometheus-community/prometheus \
     --set alertmanager.persistentVolume.storageClass="gp2" \
     --set server.persistentVolume.storageClass="gp2"
 
+
 ```
 
 kubectl get all -n prometheus
@@ -24,12 +25,12 @@ kubectl get all -n prometheus
 
 kubectl create namespace grafana
 
-helm install grafana grafana/grafana \
---namespace grafana \
---set persistence.storageClassName="gp2" \
---set persistence.enabled=true \
---set adminPassword='EKS!sAWSome' \
---values grafana.yaml \
+helm install grafana grafana/grafana  
+--namespace grafana  
+--set persistence.storageClassName="gp2"  
+--set persistence.enabled=true  
+--set adminPassword='EKS!sAWSome'  
+--values grafana.yaml  
 --set service.type=LoadBalancer
 
 kubectl get all -n grafana

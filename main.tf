@@ -6,7 +6,7 @@ locals {
 }
 resource "random_integer" "this" {
   min = 0
-  max = 2
+  max = length(module.vpc.vpc_public_subnet_ids) - 1
 }
 
 module "vpc" {
